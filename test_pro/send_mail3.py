@@ -49,7 +49,6 @@ m.add_header('Content-disposition','attachment',filename=filename)    #修改邮
 msg.attach(m)
 
 
-
 smtp = smtplib.SMTP()
 smtp.connect('smtp.126.com','25') #25是端口号
 smtp.login('mg5851@126.com', 'yuyu0000')
