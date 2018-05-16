@@ -20,7 +20,7 @@ msg.attach(txt)
 
 #smtp = smtplib
 smtp = smtplib.SMTP()
-smtp.connect('smtp.126.com')
+smtp.connect('smtp.126.com','25') #25是端口号
 smtp.login('mg5851@126.com', '*****')
 smtp.sendmail('mg5851@126.com', '2458125875@qq.com', msg.as_string())
 smtp.quit()
