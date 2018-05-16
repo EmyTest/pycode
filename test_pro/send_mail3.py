@@ -51,7 +51,7 @@ msg.attach(m)
 
 smtp = smtplib.SMTP()
 smtp.connect('smtp.126.com','25') #25是端口号
-smtp.login('mg5851@126.com', 'yuyu0000')
+smtp.login('mg5851@126.com', '******')
 smtp.sendmail('mg5851@126.com', tolist, msg.as_string())        #tolist  发送给多个人
 smtp.quit()
 print('邮件发送成功email has send out !')
