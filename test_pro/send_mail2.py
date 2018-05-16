@@ -1,6 +1,12 @@
 import smtplib
 import email.mime.multipart
 import email.mime.text
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+import smtplib,mimetypes
+import email.encoders
+from email.mime.base import MIMEBase
 
 msg = email.mime.multipart.MIMEMultipart()
 '''
@@ -19,9 +25,30 @@ txt = email.mime.text.MIMEText(content)
 msg.attach(txt)
 
 #smtp = smtplib
+
+
+
+filename = "D:\\testpro\\report\\log.txt"                     #附件名
+fp = open(filename,'rb')
+ctype,encoding = mimetypes.guess_type(filename)
+if ctype is None or encoding is not None:
+    ctype = 'application/octet-stream'
+maintype,subtype = ctype.split('/',1)
+m = MIMEBase(maintype,subtype)
+m.set_payload(fp.read())
+fp.close()
+
+email.encoders.encode_base64(m)                                           #把附件编码
+
+m.add_header('Content-disposition','attachment',filename=filename)    #修改邮件头
+msg.attach(m)
+
+
+
+
 smtp = smtplib.SMTP()
 smtp.connect('smtp.126.com','25') #25是端口号
-smtp.login('mg5851@126.com', '*****')
+smtp.login('mg5851@126.com', '******')
 smtp.sendmail('mg5851@126.com', '2458125875@qq.com', msg.as_string())
 smtp.quit()
 print('邮件发送成功email has send out !')
